@@ -22,3 +22,4 @@ gradlew*
 gradle/
 /.idea/
 /gradle/
+/intro/src/main/java/javase01/t01/bin/
