@@ -1,3 +1,4 @@
 # EPAMHomework
 
-- completed first module (Intro)
+- incompleted first module (Intro)
+- incompleted second module (OOP)
