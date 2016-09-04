@@ -1,0 +1,5 @@
+rootProject.name = 'EPAMHomework'
+include 'core'
+include 'intro'
+include 'oop'
+

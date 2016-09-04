@@ -1,14 +1,24 @@
-.gradle
-build/
+# IntelliJ project files #
+.idea
+classes
+out
+build
+*.class
 
-# Ignore Gradle GUI config
-gradle-app.setting
+# Eclipse project files #
+.classpath
+.project
+.settings
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+# Gradle #
+target
+gradlew*
 
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+# Package Files #
+*.jar
+*.war
+*.ear
+.gradle/
+gradle/
+/.idea/
+/gradle/
