@@ -3,4 +3,5 @@ include 'core'
 include 'intro'
 include 'oop'
 include 'io'
+include 'strings'
 

@@ -1,8 +1,6 @@
 package javase01.t03;
 
-/**
- * Created by Eugene on 04.09.2016.
- */
+@SuppressWarnings("WeakerAccess")
 public class Function {
     public static double f (double x){
         return Math.tan(2.0 * x) - 3.0;
@@ -14,20 +12,27 @@ public class Function {
             end = start;
             start = t;
         }
-        double range = end - start;
-        int steps = (int)(range / h); //возможно переполнение
 
-        //end != start + h*range с очень большой вероятностью
-        double fx[] = new double[steps + 1];
+        double range = end - start;
+        int steps = (int)(range / h);
+        double fx[] = new double[steps + 1]; // internal points + start + end
+        fx[steps] = Double.NaN;
 
         double point = start;
-        for (int i = 0; i < steps; i++, point+=h){
+        fx[0] = f(point);
+        System.out.println(fx[0]);
+
+        point = start + h;
+        for (int i = 1; point <= end; point+=h, i++){
             fx[i] = f(point);
-            System.out.println("F(" + point + ") = " + fx[i]);
+            System.out.println(fx[i]);
         }
-        if (end > point) point = end;
-        fx[steps] = f(point);
-        System.out.println("F(" + point + ") = " + fx[steps]);
+
+        point = end;
+        if (Double.isNaN(fx[steps])) {
+            fx[steps] = f(point);
+            System.out.println(fx[steps]);
+        }
         return fx;
     }
 }
