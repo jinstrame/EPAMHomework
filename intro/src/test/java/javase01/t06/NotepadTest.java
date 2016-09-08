@@ -45,5 +45,34 @@ public class NotepadTest {
         assertThat(notepad.get("test title").toString(), equalTo("test title :: test content"));
     }
 
+    @Test
+    public void toStringTest() throws Exception {
+        String s = notepad.toString();
+        String test = notepad.get(0).toString() + "\n";
+        test += notepad.get(1).toString() + "\n";
+        test += notepad.get(2).toString() + "\n";
+
+        assertThat(s, is(test));
+    }
+
+    @Test
+    public void removeTest() throws Exception {
+        String first = notepad.get(1).toString() + "\n";
+        first += notepad.get(2).toString() + "\n";
+
+        String last = notepad.get(1).toString() + "\n";
+
+        String middle = "";
+
+        notepad.removeFirst();
+        assertThat(notepad.toString(), is(first));
+
+        notepad.removeLast();
+        assertThat(notepad.toString(), is(last));
+
+        notepad.remove(0);
+        assertThat(notepad.toString(), is(middle));
+    }
+
 
 }
