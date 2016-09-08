@@ -3,48 +3,47 @@ package javase01.t06;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
 
-/**
- * Created by Eugene on 04.09.2016.
- */
 public class NotepadTest {
-    Notepad notepad;
-    NotepadEntry e1;
-    NotepadEntry e2;
-    NotepadEntry e3;
-    NotepadEntry e4;
-
+    private Notepad notepad;
 
     @Before
     public void setUp() throws Exception {
         notepad = new Notepad();
+
+        NotepadEntry e1;
+        NotepadEntry e2;
+        NotepadEntry e3;
+
         e1 = new NotepadEntry("entry 1");
         e2 = new NotepadEntry("entry 2");
         e3 = new NotepadEntry("entry 3");
-        e4 = new NotepadEntry("entry 4");
+
         notepad.add(e1);
         notepad.add(e2);
         notepad.add(e3);
     }
 
     @Test
-    public void get() throws Exception {
-        assertEquals(e1, notepad.get(0));
-        assertEquals(e2, notepad.get(1));
-        assertEquals(e3, notepad.get(2));
-    }
-
-    @Test
-    public void add() throws Exception {
+    public void addNotepadEntryTest() throws Exception {
+        NotepadEntry e4 = new NotepadEntry("entry 4");
         notepad.add(e4);
-        assertEquals(notepad.get(3), e4);
-        assertEquals(notepad.getSize(), 4);
+        assertThat(notepad.get(3).toString(), equalTo(e4.toString()));
+        assertThat(notepad.getSize(), is(4));
     }
 
     @Test
-    public void toStringTest() throws Exception {
-        System.out.println(notepad.toString());
+    public void editNotepadEntryTest() throws Exception {
+        notepad.get(0).getContent().append("content 1");
+        assertThat(notepad.get("entry 1").getContent().toString(), equalTo("content 1"));
+
+        notepad.get(2).setTitle("test title");
+        notepad.get(2).getContent().append("test content");
+        assertThat(notepad.get("test title").toString(), equalTo("test title :: test content"));
     }
+
 
 }

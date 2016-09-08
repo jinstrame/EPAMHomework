@@ -1,15 +1,24 @@
 package javase01.t06;
 
+import lombok.Getter;
+
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
-/**
- * Created by Eugene on 04.09.2016.
- */
+
+/* TODO
+ * add javadoc */
+
+@SuppressWarnings("WeakerAccess")
 public class Notepad {
-    private NotepadEntry[] notepadEntries;
-    private int size;
-    private int capacity;
 
+
+    private NotepadEntry[] notepadEntries;
+
+    @Getter
+    private int size;
+
+    private int capacity;
 
     public Notepad() {
         this(10);
@@ -26,6 +35,15 @@ public class Notepad {
         return notepadEntries[index];
     }
 
+    public NotepadEntry get(String title){
+        for (int i = 0; i < size; i++) {
+            if (notepadEntries[i].getTitle().equals(title))
+                return notepadEntries[i];
+        }
+
+        throw new NoSuchElementException();
+    }
+
     public void add(NotepadEntry e){
         if (size == capacity){
             if (capacity == Integer.MAX_VALUE) throw new ArrayIndexOutOfBoundsException();
@@ -37,18 +55,6 @@ public class Notepad {
         }
 
         notepadEntries[size++] = e;
-    }
-
-    @Override
-    public String toString() {
-        return "Notepad{" +
-                "notepadEntries=" +
-                Arrays.toString(Arrays.copyOfRange(notepadEntries, 0, size)) +
-                '}';
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public void removeLast(){

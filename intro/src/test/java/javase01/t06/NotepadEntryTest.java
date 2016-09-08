@@ -3,31 +3,25 @@ package javase01.t06;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
 
-/**
- * Created by Eugene on 04.09.2016.
- */
 public class NotepadEntryTest {
-    NotepadEntry e1;
-    NotepadEntry e2;
+    private NotepadEntry e1;
+    private NotepadEntry e2;
+    private NotepadEntry e3;
     @Before
     public void setUp() throws Exception {
-        e1 = new NotepadEntry();
-        e2 = new NotepadEntry("test string");
+        e1 = new NotepadEntry("first entry");
+        e2 = new NotepadEntry("second entry", "test string");
+        e3 = new NotepadEntry("first entry", "test string");
     }
 
     @Test
-    public void toStringTest() throws Exception {
-        assertEquals("test string", e2.toString());
-    }
-
-    @Test
-    public void edit() throws Exception {
-        e1.edit().append("test strin");
-        e2.edit().setLength(10);
-        e2.edit().trimToSize();
-        assertEquals(e1,e2);
+    public void NotepadEditTest() throws Exception {
+        e1.getContent().append("test string");
+        assertThat(e1.toString(), equalTo(e3.toString()));
+        assertThat(e2.toString(), equalTo("second entry :: test string"));
     }
 
 }
