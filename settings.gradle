@@ -3,6 +3,6 @@ include 'core',
         'intro',
         'oop',
         'io',
-        'strings'
-include 'exceptions'
+        'strings',
+        'exceptions'
 

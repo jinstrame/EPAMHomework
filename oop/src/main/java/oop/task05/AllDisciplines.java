@@ -24,7 +24,7 @@ public class AllDisciplines {
         StringBuilder stringBuilder = new StringBuilder("");
         for (DisciplineGroup group: disciplineGroups){
             Number value = group.getValue(name);
-            if (Double.isNaN(value.doubleValue()) || value.intValue() == Integer.MIN_VALUE)
+            if (value == null)
                 continue;
 
             stringBuilder.append(group.getDiscipline().name()).append(" -- ").append(value.toString()).append("\n");
