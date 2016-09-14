@@ -1,7 +1,7 @@
 # EPAMHomework
 
 - Completed first module!!! (Intro)
-- incompleted second module (OOP)
+- Completed second module!!! (OOP)
 - incompleted second module (Strings)
 - incompleted second module (IO)
 
