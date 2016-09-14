@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.TreeSet;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -31,6 +32,12 @@ public class StarterKitAndComparatorTest {
 
         assertThat(starterTools[0].getName(), equalTo("StarterBluePen"));
         assertThat(starterTools[4].getName(), equalTo("StarterStapler"));
+
+        TreeSet<OfficeTool> t = new TreeSet<>(toolsCollection);
+        assertThat(t.first().getName(), equalTo("StarterBluePen"));
+        assertThat(t.last().getName(), equalTo("StarterStapler"));
+
+
     }
 
     @Test

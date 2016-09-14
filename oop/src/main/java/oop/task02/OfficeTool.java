@@ -2,10 +2,12 @@ package oop.task02;
 
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class OfficeTool implements Comparable {
     protected int price;
     protected String name;
