@@ -23,6 +23,9 @@ public class CrazyLogger {
     }
 
     public static Iterator<String> search(String regex){
+        if (regex == null)
+            return new LinkedList<String>().iterator();
+
         Pattern p = Pattern.compile("((.*)(" + regex + ")(.*))");
         Matcher m = p.matcher(stringBuilder);
 
