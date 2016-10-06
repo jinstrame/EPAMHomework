@@ -10,5 +10,4 @@ public class Utf8To16Test {
 
         Utf8To16.procedure(source, dest);
     }
-
 }
