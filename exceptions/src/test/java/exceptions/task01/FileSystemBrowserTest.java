@@ -9,6 +9,13 @@ public class FileSystemBrowserTest {
 
     @Test
     public void ls() throws Exception {
+        FileSystemBrowser fsBrowser = new FileSystemBrowser();
+
+        fsBrowser.cd("home");
+        fsBrowser.ls();
+        fsBrowser.cd("../");
+        fsBrowser.cd("etc");
+        fsBrowser.ls();
     }
 
 }

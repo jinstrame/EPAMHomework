@@ -35,7 +35,7 @@ public class TextFile {
 
     private void write(String content, boolean append) throws IOException{
         if (!accessible)
-            throw new TextFileNotAccessibleException("File do not accessible");
+            throw new TextFileNotAccessibleException("file do not accessible");
 
         try(FileWriter fw = new FileWriter(fullPath.toFile(), append);
             BufferedWriter bw = new BufferedWriter(fw)) {
