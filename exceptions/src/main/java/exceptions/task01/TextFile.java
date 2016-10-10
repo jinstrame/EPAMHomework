@@ -2,42 +2,73 @@ package exceptions.task01;
 
 import lombok.Getter;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
-
+@SuppressWarnings({"WeakerAccess", "JavaDoc",})
 public class TextFile {
     @Getter
-    private String name;
-    @Getter
-    private Path fullPath;
-    @Getter
-    private boolean accessible;
+    private Path path;
 
-    TextFile(String name, String path) throws IOException{
-        accessible = false;
-
-        String fullPath;
-        if (path.endsWith("\\"))
-            fullPath = path + name + ".txt";
-        else fullPath = path + "\\" + name + ".txt";
-
-        this.fullPath = Files.createFile(Paths.get(fullPath));
-
-        if (Files.exists(this.fullPath)) {
-            accessible = true;
-        }
+    /**
+     * @param folderPath
+     * @param fileName
+     * @return object of TextFile
+     * @throws IOException
+     * @throws FileAlreadyExistsException
+     * @throws FileNotTxtException
+     */
+    public static TextFile create(Path folderPath, String fileName) throws IOException {
+        return new TextFile(folderPath, fileName, false);
     }
 
-    private void write(String content, boolean append) throws IOException{
-        if (!accessible)
-            throw new TextFileNotAccessibleException("file do not accessible");
+    /**
+     * @param folderPath
+     * @param fileName
+     * @return object of TextFile
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws FileNotTxtException
+     */
+    public static TextFile open(Path folderPath, String fileName) throws IOException {
+        return new TextFile(folderPath, fileName, true);
+    }
 
-        try(FileWriter fw = new FileWriter(fullPath.toFile(), append);
+    private TextFile(Path folderPath, String fileName, boolean open) throws IOException {
+        if (open) getExistingFile(folderPath, fileName);
+        else createNewFile(folderPath, fileName);
+    }
+
+    private void getExistingFile(Path folderPath, String fileName) throws IOException {
+        File[] filesInDirectory = folderPath.toFile().listFiles();
+        if (filesInDirectory == null)
+            throw new IOException(fileName);
+
+        for (File f : filesInDirectory) {
+            if (f.getName().equals(fileName)) {
+                path = f.toPath();
+            }
+        }
+        if (path == null)
+            throw new FileNotFoundException(fileName);
+
+        if (!fileName.endsWith(".txt"))
+            throw new FileNotTxtException(fileName);
+    }
+
+    private void createNewFile(Path folderPath, String fileName) throws IOException {
+        if (!fileName.endsWith(".txt"))
+            throw new FileNotTxtException(fileName);
+
+        File f = new File(folderPath.toFile(), fileName);
+        path = f.toPath();
+        Files.createFile(path);
+    }
+
+    private void write(String content, boolean append) throws IOException {
+        try(FileWriter fw = new FileWriter(path.toFile(), append);
             BufferedWriter bw = new BufferedWriter(fw)) {
             bw.write(content);
         }
@@ -49,5 +80,13 @@ public class TextFile {
 
     public void reWrite(String content) throws IOException {
         write(content, false);
+    }
+
+    public InputStreamReader read() throws FileNotFoundException {
+        return new InputStreamReader(new FileInputStream(path.toFile()));
+    }
+
+    public void delete() throws IOException {
+        Files.delete(path);
     }
 }
