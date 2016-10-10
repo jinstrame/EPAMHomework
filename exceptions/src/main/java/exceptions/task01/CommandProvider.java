@@ -98,11 +98,6 @@ public class CommandProvider {
             fsBrowser.restore();
         }
     }
-    private static void reverceCd(int count){
-        for (int i = 0; i < count; i++)
-            fsBrowser.reverseCD();
-    }
-
     private static void createText(String file){
         if (file == null) {
             System.out.println("cr: incorrect command argument");
@@ -178,8 +173,4 @@ public class CommandProvider {
         }
         fsBrowser.readTextFile(file);
     }
-
-
-
 }
-
