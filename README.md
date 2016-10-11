@@ -2,8 +2,7 @@
 
 - Completed first module!!! (Intro)
 - Completed second module!!! (OOP)
-- incompleted 3rd module (Strings)
-- incompleted 4th module (IO)
-- incompleted 5th module (Exceptions)
-
-
+- Completed third module!!! (Strings)
+- Completed 4th module!!! (IO)
+- Completed 5th module!!! (Exceptions)
+- Completed 6th module!!! (Collections)

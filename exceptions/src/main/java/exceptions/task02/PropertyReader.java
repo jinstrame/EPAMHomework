@@ -12,7 +12,7 @@ public class PropertyReader {
 
     private Properties properties;
 
-    private PropertyReader(String file) throws IOException{
+    protected PropertyReader(String file) throws IOException{
         FileInputStream fis = new FileInputStream(file);
 
         properties = new Properties();
@@ -50,7 +50,4 @@ public class PropertyReader {
         }
         return ret;
     }
-
-
-
 }

@@ -4,5 +4,6 @@ include 'core',
         'oop',
         'io',
         'strings',
-        'exceptions'
+        'exceptions',
+        'collections'
 

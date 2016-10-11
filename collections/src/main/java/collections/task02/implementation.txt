@@ -1,0 +1,3 @@
+task02 implementation equals to exceptions.task02.PropertyReader
+
+When put a value in map with a key, that already in collection, old value will be replaced by new one.
