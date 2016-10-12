@@ -6,6 +6,6 @@
 - Completed 4th module!!! (IO)
 - Completed 5th module!!! (Exceptions)
 - Completed 6th module!!! (Collections)
-- incomplete 7th module!!! (Multithreading)
+- Completed 7th module!!! (Multithreading)
 - incomplete 8th module!!! (JDBC)
 - incomplete 9th module!!! (XML)
