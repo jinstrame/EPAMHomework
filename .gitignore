@@ -1,9 +1,7 @@
 # IntelliJ project files #
 .idea
-classes
 out
 build
-*.class
 
 # Eclipse project files #
 .classpath
@@ -20,6 +18,5 @@ gradlew*
 *.ear
 .gradle/
 gradle/
-/.idea/
 /gradle/
 /intro/src/main/java/javase01/t01/bin/

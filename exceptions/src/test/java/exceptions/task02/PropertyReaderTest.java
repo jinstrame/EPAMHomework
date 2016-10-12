@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
 public class PropertyReaderTest {
@@ -26,5 +27,6 @@ public class PropertyReaderTest {
 
         assertThat(map.get("login"), equalTo("admin"));
         assertThat(map.get("password"), equalTo("password"));
+        assertFalse(map.containsKey("encryption"));
     }
 }
